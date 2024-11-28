@@ -36,7 +36,7 @@ const ContactForm = ({ handleAddContact }) => {
                 name='name'
                 placeholder='Type your name'
                 type='text'
-                value={values.name}
+                value={values.name.trim()}
               />
               <ErrorMessage name='name' component='span' className={s.error} />
             </label>
@@ -46,7 +46,7 @@ const ContactForm = ({ handleAddContact }) => {
                 name='number'
                 placeholder='Type your number'
                 type='text'
-                value={values.number}
+                value={values.number.trim()}
               />
               <ErrorMessage
                 name='number'
