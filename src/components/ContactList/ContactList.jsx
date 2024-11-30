@@ -1,18 +1,14 @@
-//? Components
+import { useSelector } from 'react-redux';
 import Contact from '../Contact/Contact';
-//? CSS
+import { selectContacts } from '../../redux/contactsSlice';
 import s from './ContactList.module.css';
 
-const ContactList = ({ contacts, handleDeleteContact }) => {
+const ContactList = () => {
+  const contacts = useSelector(selectContacts);
   return (
     <ul className={s.list}>
       {contacts.map((contact) => (
-        <Contact
-          key={contact.id}
-          contact={contact}
-          handleDeleteContact={handleDeleteContact}
-          {...contact}
-        />
+        <Contact key={contact.id} contact={contact} {...contact} />
       ))}
     </ul>
   );

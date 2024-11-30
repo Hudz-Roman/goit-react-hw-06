@@ -1,10 +1,13 @@
-//? Libraries
 import { Formik, Form, Field, ErrorMessage } from 'formik';
 import * as Yup from 'yup';
-//? CSS
+import { useDispatch } from 'react-redux';
+import { nanoid } from 'nanoid';
+import { addContact } from '../../redux/contactsSlice';
 import s from './ContactForm.module.css';
 
-const ContactForm = ({ handleAddContact }) => {
+const ContactForm = () => {
+  const dispatch = useDispatch();
+
   const orderSchema = Yup.object().shape({
     name: Yup.string()
       .min(3, 'Should be 3 or more symbols')
@@ -16,9 +19,13 @@ const ContactForm = ({ handleAddContact }) => {
       .required('Required'),
   });
 
-  const handleSubmit = (values, { resetForm }) => {
-    handleAddContact(values);
-    resetForm();
+  const handleSubmit = (values) => {
+    const newContact = {
+      id: nanoid(),
+      name: values.name,
+      number: values.number,
+    };
+    dispatch(addContact(newContact));
   };
 
   return (
