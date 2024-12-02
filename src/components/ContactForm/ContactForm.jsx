@@ -19,13 +19,14 @@ const ContactForm = () => {
       .required('Required'),
   });
 
-  const handleSubmit = (values) => {
+  const handleSubmit = (values, actions) => {
     const newContact = {
       id: nanoid(),
       name: values.name,
       number: values.number,
     };
     dispatch(addContact(newContact));
+    actions.resetForm();
   };
 
   return (
